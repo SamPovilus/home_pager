@@ -2,11 +2,12 @@
 import sys
 from gpiozero import RGBLED, Button
 from time import sleep
-
+from threading import Thread
     
 class HomePager(object):
     led1 = RGBLED(red=22,green=27,blue=17,active_high = False)
-    switch = Button(23,pull_up=False,bounce_time=0.02)
+    alert = Button(23,pull_up=False,bounce_time=0.02)
+    alarm = Button(<something>.pull_up=False,bounce_time=0.02)
     is_main_console = False
     def main():
         if(sys.argv[1] == "main"):
@@ -22,9 +23,14 @@ class HomePager(object):
             MAIN_CONSOLE_SEND_PORT   = 32324
 
         class Remote(object):
-            """ This will be the thing running on the remotes. Because I bought toggle switches instead of momentaries I think I will just look for \delta 's in the switches, I may go ahead and by some momentaries, but for now this will work. The system will send out a message once a second  """
+            """ This will be the thing running on the remotes. Because I bought toggle switches instead of momentaries I think I will just look for \delta 's in the switches, I may go ahead and by some momentaries, but for now this will work. The remote will send out a message once a second  and listen for an acknowlage from the central base station. All other remotes will silently receive the packet and replicate the state of the remote. The central box will receive the state and then send out an acknowlage. When the remote receves an acknowlage from the central box, they will stop blinking and store state."""
             def mainLoop():
-                super.switch.
+
+            def button_listener(button):
+                button.wait_for_press()
+                
+                
+                
 if __name__== "__main__":
   HomePager.main()
 
