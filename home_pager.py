@@ -21,6 +21,10 @@ class HomePager(object):
             MAIN_CONSOLE_RECEVE_PORT = 32323
             MAIN_CONSOLE_SEND_PORT   = 32324
 
+        class Remote(object):
+            """ This will be the thing running on the remotes. Because I bought toggle switches instead of momentaries I think I will just look for \delta 's in the switches, I may go ahead and by some momentaries, but for now this will work. The system will send out a message once a second  """
+            def mainLoop():
+                super.switch.
 if __name__== "__main__":
   HomePager.main()
 
