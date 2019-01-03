@@ -42,9 +42,22 @@ class HomePager():
             self.parent = parent
         
         def mainLoop(self):
+            lc = 0
             while True:
                 print("Alerting %s Alarming %s" % (self.parent.alerting, self.parent.alarming))
                 sleep(0.1)
+                if(self.parent.alerting):
+                    self.parent.led1.color = (1,1,0)
+                if(self.parent.alarming):
+                    self.parent.led1.color = (1,0,1)
+                if(self.parent.alerting or self.parent.alarming):
+                    lc += 1
+                if(lc > 20):
+                    self.parent.alerting = False
+                    self.parent.alarming = False
+                    self.parent.led1.off()
+                    lc = 0
+                    
                     
                 
                 
