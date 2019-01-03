@@ -15,14 +15,14 @@ class HomePager(object):
         if(sys.argv[1] == "main"):
             print("Am main console")
         else:
-            print("am remote console")
+            print("Am remote console")
         print(sys.argv[1])
         print(Params.MAIN_CONSOLE_SEND_PORT)
         alertB.when_pressed = alert_pressed
         alarmB.when_pressed = alarm_pressed
 
         foo = Remote()
-        foo.mainLoop
+        foo.mainLoop()
         
         def alert_pressed():
             alerting = True
